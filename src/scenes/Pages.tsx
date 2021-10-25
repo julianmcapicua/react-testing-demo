@@ -1,34 +1,26 @@
-import { useEffect } from 'react'
-import { Route, Switch, useHistory } from 'react-router-dom'
-import { useUserContext } from '../context/UserContext'
-import { Home } from './Home/Home'
-import { Login } from './Login/Login'
+import { Route, Switch } from 'react-router-dom'
+import { Counter } from './Counter/Counter'
+import { Yugioh } from './Yugioh/Yugioh'
 
 type PagesType = {
     name: string
     path: string
-    Component: () => JSX.Element
+    Component: <T>(props: T) => JSX.Element
 }
-const pages: { [key: string]: PagesType } = {
-    Home: {
-        name: 'Home',
-        path: '/',
-        Component: Home,
+export const pages: { [key: string]: PagesType } = {
+    Yugioh: {
+        name: 'Yugioh',
+        path: '/yugioh',
+        Component: Yugioh,
     },
-    Login: {
-        name: 'Login',
-        path: '/login',
-        Component: Login,
+    Counter: {
+        name: 'Counter',
+        path: '/counter',
+        Component: Counter,
     },
 }
 
 export const Pages = () => {
-    const { googleId } = useUserContext()
-    const history = useHistory()
-    useEffect(() => {
-        // if (!googleId) history.push(pages.Login.path)
-    })
-
     return (
         <Switch>
             {Object.keys(pages).map((i) => (

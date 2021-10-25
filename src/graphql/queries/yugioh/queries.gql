@@ -1,0 +1,6 @@
+query GetYugiohCard {
+    yugioh_names {
+        id
+        name
+    }
+}

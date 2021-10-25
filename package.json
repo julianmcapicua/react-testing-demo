@@ -31,7 +31,7 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "generate": "graphql-codegen",
+        "generate": "graphql-codegen --require dotenv/config --config codegen.yml",
         "g": "graphql-codegen --require dotenv/config --config codegen.yml",
         "p": "prettier --write ."
     },

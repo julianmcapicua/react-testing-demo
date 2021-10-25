@@ -4,138 +4,66 @@ import { gql } from '@apollo/client'
 import * as Apollo from '@apollo/client'
 const defaultOptions = {}
 
-export const InsertUserDocument = gql`
-    mutation InsertUser(
-        $googleId: String!
-        $firstName: String
-        $lastName: String
-        $email: String
-    ) {
-        insert_user_one(
-            object: {
-                email: $email
-                first_name: $firstName
-                google_id: $googleId
-                last_name: $lastName
-            }
-        ) {
-            email
-            first_name
-            google_id
+export const GetYugiohCardDocument = gql`
+    query GetYugiohCard {
+        yugioh_names {
             id
-            last_name
-        }
-    }
-`
-export type InsertUserMutationFn = Apollo.MutationFunction<
-    Types.InsertUserMutation,
-    Types.InsertUserMutationVariables
->
-
-/**
- * __useInsertUserMutation__
- *
- * To run a mutation, you first call `useInsertUserMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useInsertUserMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [insertUserMutation, { data, loading, error }] = useInsertUserMutation({
- *   variables: {
- *      googleId: // value for 'googleId'
- *      firstName: // value for 'firstName'
- *      lastName: // value for 'lastName'
- *      email: // value for 'email'
- *   },
- * });
- */
-export function useInsertUserMutation(
-    baseOptions?: Apollo.MutationHookOptions<
-        Types.InsertUserMutation,
-        Types.InsertUserMutationVariables
-    >
-) {
-    const options = { ...defaultOptions, ...baseOptions }
-    return Apollo.useMutation<
-        Types.InsertUserMutation,
-        Types.InsertUserMutationVariables
-    >(InsertUserDocument, options)
-}
-export type InsertUserMutationHookResult = ReturnType<
-    typeof useInsertUserMutation
->
-export type InsertUserMutationResult =
-    Apollo.MutationResult<Types.InsertUserMutation>
-export type InsertUserMutationOptions = Apollo.BaseMutationOptions<
-    Types.InsertUserMutation,
-    Types.InsertUserMutationVariables
->
-export const GetUSerByGoogleIdDocument = gql`
-    query GetUSerByGoogleId($googleId: String!) {
-        user(where: { google_id: { _eq: $googleId } }) {
-            email
-            id
-            first_name
-            last_name
+            name
         }
     }
 `
 
 /**
- * __useGetUSerByGoogleIdQuery__
+ * __useGetYugiohCardQuery__
  *
- * To run a query within a React component, call `useGetUSerByGoogleIdQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetUSerByGoogleIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetYugiohCardQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetYugiohCardQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetUSerByGoogleIdQuery({
+ * const { data, loading, error } = useGetYugiohCardQuery({
  *   variables: {
- *      googleId: // value for 'googleId'
  *   },
  * });
  */
-export function useGetUSerByGoogleIdQuery(
-    baseOptions: Apollo.QueryHookOptions<
-        Types.GetUSerByGoogleIdQuery,
-        Types.GetUSerByGoogleIdQueryVariables
+export function useGetYugiohCardQuery(
+    baseOptions?: Apollo.QueryHookOptions<
+        Types.GetYugiohCardQuery,
+        Types.GetYugiohCardQueryVariables
     >
 ) {
     const options = { ...defaultOptions, ...baseOptions }
     return Apollo.useQuery<
-        Types.GetUSerByGoogleIdQuery,
-        Types.GetUSerByGoogleIdQueryVariables
-    >(GetUSerByGoogleIdDocument, options)
+        Types.GetYugiohCardQuery,
+        Types.GetYugiohCardQueryVariables
+    >(GetYugiohCardDocument, options)
 }
-export function useGetUSerByGoogleIdLazyQuery(
+export function useGetYugiohCardLazyQuery(
     baseOptions?: Apollo.LazyQueryHookOptions<
-        Types.GetUSerByGoogleIdQuery,
-        Types.GetUSerByGoogleIdQueryVariables
+        Types.GetYugiohCardQuery,
+        Types.GetYugiohCardQueryVariables
     >
 ) {
     const options = { ...defaultOptions, ...baseOptions }
     return Apollo.useLazyQuery<
-        Types.GetUSerByGoogleIdQuery,
-        Types.GetUSerByGoogleIdQueryVariables
-    >(GetUSerByGoogleIdDocument, options)
+        Types.GetYugiohCardQuery,
+        Types.GetYugiohCardQueryVariables
+    >(GetYugiohCardDocument, options)
 }
-export type GetUSerByGoogleIdQueryHookResult = ReturnType<
-    typeof useGetUSerByGoogleIdQuery
+export type GetYugiohCardQueryHookResult = ReturnType<
+    typeof useGetYugiohCardQuery
 >
-export type GetUSerByGoogleIdLazyQueryHookResult = ReturnType<
-    typeof useGetUSerByGoogleIdLazyQuery
+export type GetYugiohCardLazyQueryHookResult = ReturnType<
+    typeof useGetYugiohCardLazyQuery
 >
-export type GetUSerByGoogleIdQueryResult = Apollo.QueryResult<
-    Types.GetUSerByGoogleIdQuery,
-    Types.GetUSerByGoogleIdQueryVariables
+export type GetYugiohCardQueryResult = Apollo.QueryResult<
+    Types.GetYugiohCardQuery,
+    Types.GetYugiohCardQueryVariables
 >
-export function refetchGetUSerByGoogleIdQuery(
-    variables?: Types.GetUSerByGoogleIdQueryVariables
+export function refetchGetYugiohCardQuery(
+    variables?: Types.GetYugiohCardQueryVariables
 ) {
-    return { query: GetUSerByGoogleIdDocument, variables: variables }
+    return { query: GetYugiohCardDocument, variables: variables }
 }

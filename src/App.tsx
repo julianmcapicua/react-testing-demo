@@ -1,8 +1,7 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
-import { createTheme, ThemeProvider } from '@material-ui/core'
-import { BrowserRouter as Router } from 'react-router-dom'
-import { UserProvider } from './context/UserContext'
-import { Pages } from './scenes/Pages'
+import { Box, createTheme, ThemeProvider } from '@material-ui/core'
+import { BrowserRouter as Router, Link } from 'react-router-dom'
+import { pages, Pages } from './scenes/Pages'
 
 const theme = createTheme({
     palette: {
@@ -31,21 +30,35 @@ const theme = createTheme({
 const client = new ApolloClient({
     uri: process.env.REACT_APP_HASURA_ENDPOINT || '',
     headers: {
-        'x-hasura-admin-secret': process.env.HASURA_ADMIN_SECRET || '',
+        'x-hasura-admin-secret':
+            process.env.REACT_APP_HASURA_ADMIN_SECRET || '',
     },
     cache: new InMemoryCache(),
 })
+
+console.log(process.env.REACT_APP_HASURA_ADMIN_SECRET)
 
 function App() {
     return (
         <ApolloProvider client={client}>
             <ThemeProvider theme={theme}>
-                <UserProvider>
-                    <Router>
-                        <Pages />
-                    </Router>
-                    <div className="App" />
-                </UserProvider>
+                <Router>
+                    <Pages />
+                    <Box
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            position: 'absolute',
+                            top: '50%',
+                        }}
+                    >
+                        <Link to={pages.Yugioh.path}>Request Testing</Link>
+                        <Link to={pages.Counter.path}>Simple Counter</Link>
+                    </Box>
+                </Router>
             </ThemeProvider>
         </ApolloProvider>
     )
