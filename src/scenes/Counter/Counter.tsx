@@ -12,11 +12,9 @@ export const Counter = ({ initialValue = 0 }: { initialValue?: number }) => {
             justifyContent="space-around"
             style={{ maxWidth: 250, margin: '0 auto' }}
         >
-            <Box>{counter}</Box>
-            <Box>
-                <Button onClick={handleIncrement}>Increment</Button>
-                <Button onClick={handleDecrement}>Decrement</Button>
-            </Box>
+            <Button onClick={handleDecrement}>Decrement</Button>
+            <Box style={{ margin: '0 20px' }}>{counter}</Box>
+            <Button onClick={handleIncrement}>Increment</Button>
         </Box>
     )
 }

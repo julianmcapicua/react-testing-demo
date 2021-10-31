@@ -885,9 +885,9 @@ type subscription_root {
 columns and relationships of "usuarios"
 """
 type usuarios {
+    email: String!
     id: Int!
     password: String!
-    username: String!
 }
 
 """
@@ -929,9 +929,9 @@ input usuarios_bool_exp {
     _and: [usuarios_bool_exp!]
     _not: usuarios_bool_exp
     _or: [usuarios_bool_exp!]
+    email: String_comparison_exp
     id: Int_comparison_exp
     password: String_comparison_exp
-    username: String_comparison_exp
 }
 
 """
@@ -955,27 +955,27 @@ input usuarios_inc_input {
 input type for inserting data into table "usuarios"
 """
 input usuarios_insert_input {
+    email: String
     id: Int
     password: String
-    username: String
 }
 
 """
 aggregate max on columns
 """
 type usuarios_max_fields {
+    email: String
     id: Int
     password: String
-    username: String
 }
 
 """
 aggregate min on columns
 """
 type usuarios_min_fields {
+    email: String
     id: Int
     password: String
-    username: String
 }
 
 """
@@ -1005,9 +1005,9 @@ input usuarios_on_conflict {
 Ordering options when selecting data from "usuarios".
 """
 input usuarios_order_by {
+    email: order_by
     id: order_by
     password: order_by
-    username: order_by
 }
 
 """
@@ -1024,24 +1024,24 @@ enum usuarios_select_column {
     """
     column name
     """
+    email
+    """
+    column name
+    """
     id
     """
     column name
     """
     password
-    """
-    column name
-    """
-    username
 }
 
 """
 input type for updating data in table "usuarios"
 """
 input usuarios_set_input {
+    email: String
     id: Int
     password: String
-    username: String
 }
 
 """
@@ -1079,15 +1079,15 @@ enum usuarios_update_column {
     """
     column name
     """
+    email
+    """
+    column name
+    """
     id
     """
     column name
     """
     password
-    """
-    column name
-    """
-    username
 }
 
 """

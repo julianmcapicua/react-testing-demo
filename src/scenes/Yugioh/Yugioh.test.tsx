@@ -1,10 +1,11 @@
 import { MockedProvider } from '@apollo/client/testing'
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
+import { GraphQLError } from 'graphql'
 import { GetYugiohCardDocument } from '../../graphql/autogenerate/hooks'
 import { Yugioh } from './Yugioh'
 
 // We'll fill this in next
-describe('yugioh', () => {
+describe('Yugioh Component', () => {
     it('Renders yugioh card name', async () => {
         const mocks = [
             {
@@ -31,9 +32,7 @@ describe('yugioh', () => {
 
         expect(screen.getByText('loading')).toBeVisible()
 
-        const yugiohName = await screen.findByText('Exodia')
-
-        expect(yugiohName).toBeVisible()
+        await waitFor(() => expect(screen.getByText('Exodia')).toBeVisible())
     })
 
     it('Renders error', async () => {
@@ -42,18 +41,7 @@ describe('yugioh', () => {
                 request: {
                     query: GetYugiohCardDocument,
                 },
-                result: {
-                    errors: [
-                        {
-                            extensions: {
-                                path: '$.selectionSet.yugioh_names.selectionSet.namea',
-                                code: 'validation-failed',
-                            },
-                            message:
-                                'field "namea" not found in type: \'yugioh_names\'',
-                        },
-                    ],
-                },
+                result: { errors: [new GraphQLError('Error!')] },
             },
         ]
         render(
@@ -64,9 +52,7 @@ describe('yugioh', () => {
 
         expect(screen.getByText('loading')).toBeVisible()
 
-        const yugiohName = await screen.findByText('error')
-
-        expect(yugiohName).toBeVisible()
+        await waitFor(() => expect(screen.getByText('error')).toBeVisible())
     })
 
     it('Renders text on empty yugioh names', async () => {
@@ -90,8 +76,8 @@ describe('yugioh', () => {
 
         expect(screen.getByText('loading')).toBeVisible()
 
-        const yugiohName = await screen.findByText('no yugioh names found')
-
-        expect(yugiohName).toBeVisible()
+        await waitFor(() =>
+            expect(screen.getByText('no yugioh names found')).toBeVisible()
+        )
     })
 })

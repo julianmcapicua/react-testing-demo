@@ -568,9 +568,9 @@ export type Subscription_RootYugioh_Names_By_PkArgs = {
 /** columns and relationships of "usuarios" */
 export type Usuarios = {
     __typename?: 'usuarios'
+    email: Scalars['String']
     id: Scalars['Int']
     password: Scalars['String']
-    username: Scalars['String']
 }
 
 /** aggregated selection of "usuarios" */
@@ -613,9 +613,9 @@ export type Usuarios_Bool_Exp = {
     _and?: Maybe<Array<Usuarios_Bool_Exp>>
     _not?: Maybe<Usuarios_Bool_Exp>
     _or?: Maybe<Array<Usuarios_Bool_Exp>>
+    email?: Maybe<String_Comparison_Exp>
     id?: Maybe<Int_Comparison_Exp>
     password?: Maybe<String_Comparison_Exp>
-    username?: Maybe<String_Comparison_Exp>
 }
 
 /** unique or primary key constraints on table "usuarios" */
@@ -631,25 +631,25 @@ export type Usuarios_Inc_Input = {
 
 /** input type for inserting data into table "usuarios" */
 export type Usuarios_Insert_Input = {
+    email?: Maybe<Scalars['String']>
     id?: Maybe<Scalars['Int']>
     password?: Maybe<Scalars['String']>
-    username?: Maybe<Scalars['String']>
 }
 
 /** aggregate max on columns */
 export type Usuarios_Max_Fields = {
     __typename?: 'usuarios_max_fields'
+    email?: Maybe<Scalars['String']>
     id?: Maybe<Scalars['Int']>
     password?: Maybe<Scalars['String']>
-    username?: Maybe<Scalars['String']>
 }
 
 /** aggregate min on columns */
 export type Usuarios_Min_Fields = {
     __typename?: 'usuarios_min_fields'
+    email?: Maybe<Scalars['String']>
     id?: Maybe<Scalars['Int']>
     password?: Maybe<Scalars['String']>
-    username?: Maybe<Scalars['String']>
 }
 
 /** response of any mutation on the table "usuarios" */
@@ -670,9 +670,9 @@ export type Usuarios_On_Conflict = {
 
 /** Ordering options when selecting data from "usuarios". */
 export type Usuarios_Order_By = {
+    email?: Maybe<Order_By>
     id?: Maybe<Order_By>
     password?: Maybe<Order_By>
-    username?: Maybe<Order_By>
 }
 
 /** primary key columns input for table: usuarios */
@@ -683,18 +683,18 @@ export type Usuarios_Pk_Columns_Input = {
 /** select columns of table "usuarios" */
 export enum Usuarios_Select_Column {
     /** column name */
+    Email = 'email',
+    /** column name */
     Id = 'id',
     /** column name */
     Password = 'password',
-    /** column name */
-    Username = 'username',
 }
 
 /** input type for updating data in table "usuarios" */
 export type Usuarios_Set_Input = {
+    email?: Maybe<Scalars['String']>
     id?: Maybe<Scalars['Int']>
     password?: Maybe<Scalars['String']>
-    username?: Maybe<Scalars['String']>
 }
 
 /** aggregate stddev on columns */
@@ -724,11 +724,11 @@ export type Usuarios_Sum_Fields = {
 /** update columns of table "usuarios" */
 export enum Usuarios_Update_Column {
     /** column name */
+    Email = 'email',
+    /** column name */
     Id = 'id',
     /** column name */
     Password = 'password',
-    /** column name */
-    Username = 'username',
 }
 
 /** aggregate var_pop on columns */
